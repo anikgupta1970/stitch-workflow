@@ -30,7 +30,7 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v6
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.DOWNSTREAM_PAT }}
           branch: chore/upgrade-stitch-jbi-${{ github.event.client_payload.jbi_version }}
           commit-message: "chore: upgrade stitch-jbi to ${{ github.event.client_payload.jbi_version }}"
           title: "chore: upgrade stitch-jbi to ${{ github.event.client_payload.jbi_version }}"
