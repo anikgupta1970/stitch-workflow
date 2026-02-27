@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.spliceforms</groupId>
+  <artifactId>stitch-workflow</artifactId>
+  <version>1.0.25-SNAPSHOT</version>
+
+  <properties>
+    <!--
+      STEP 2 (same as stitch-processing): Auto-PR bumps this property.
+      Consistent property name across all downstream repos means
+      one workflow template handles all of them.
+    -->
+    <stitch.jbi.version>2.0.137</stitch.jbi.version>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.spliceforms</groupId>
+      <artifactId>stitch-jbi-interface</artifactId>
+      <version>${stitch.jbi.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.spliceforms</groupId>
+      <artifactId>stitch-jbi-hdfc</artifactId>
+      <version>${stitch.jbi.version}</version>
+      <scope>runtime</scope>
+    </dependency>
+  </dependencies>
+
+</project>
