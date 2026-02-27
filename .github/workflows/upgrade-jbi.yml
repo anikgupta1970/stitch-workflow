@@ -1,0 +1,47 @@
+# .github/workflows/upgrade-jbi.yml (in stitch-processing, stitch-workflow, etc.)
+name: Upgrade stitch-jbi Version
+
+on:
+  repository_dispatch:
+    types: [jbi-version-upgrade]
+
+jobs:
+  create-upgrade-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+
+      - name: Update stitch.jbi.version in pom.xml
+        run: |
+          NEW_VERSION="${{ github.event.client_payload.jbi_version }}"
+          echo "Upgrading stitch-jbi to $NEW_VERSION"
+          mvn versions:set-property \
+            -Dproperty=stitch.jbi.version \
+            -DnewVersion=$NEW_VERSION \
+            --no-transfer-progress
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: chore/upgrade-stitch-jbi-${{ github.event.client_payload.jbi_version }}
+          commit-message: "chore: upgrade stitch-jbi to ${{ github.event.client_payload.jbi_version }}"
+          title: "chore: upgrade stitch-jbi to ${{ github.event.client_payload.jbi_version }}"
+          body: |
+            ## stitch-jbi Version Upgrade
+
+            Automated PR to upgrade `stitch-jbi` to version `${{ github.event.client_payload.jbi_version }}`.
+
+            **Changes:**
+            - Updated `stitch.jbi.version` property in `pom.xml`
+
+            Please review and merge if CI passes.
+          labels: dependencies, automated
+          delete-branch: true
