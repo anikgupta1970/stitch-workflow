@@ -12,8 +12,8 @@
       Consistent property name across all downstream repos means
       one workflow template handles all of them.
     -->
-    <stitch.jbi.version>2.0.137</stitch.jbi.version>
-    <stitch.jbi.interface.version>1</stitch.jbi.interface.version>
+    <stitch.jbi.version>0</stitch.jbi.version>
+    <stitch.jbi.interface.version>0</stitch.jbi.interface.version>
   </properties>
 
   <dependencies>
