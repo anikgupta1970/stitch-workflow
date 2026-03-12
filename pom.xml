@@ -13,7 +13,7 @@
       one workflow template handles all of them.
     -->
     <stitch.jbi.version>2.0.137</stitch.jbi.version>
-    <stitch.jbi.interface.version>1</stitch.jbi.interface.version>
+    <stitch.jbi.interface.version>3.4</stitch.jbi.interface.version>
   </properties>
 
   <dependencies>
